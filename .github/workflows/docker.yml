@@ -7,6 +7,10 @@ on:
       - completed
     branches: [main]
 
+concurrency:
+  group: docker-build
+  cancel-in-progress: false
+
 env:
   GHCR_REGISTRY: ghcr.io
   DOCKERHUB_REGISTRY: docker.io
