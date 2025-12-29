@@ -1,50 +1,52 @@
-# Стратегия веток и релизов
+# Branching and Release Strategy
 
-## Ветки
+**[🇷🇺 Русская версия](BRANCHING.ru.md)**
+
+## Branches
 
 ### `main` 
-- 🚀 **Продакшн ветка** - всегда стабильная
-- Только через PR из `develop`
-- Автоматические релизы при создании тегов
-- Защищена от прямых коммитов
+- 🚀 **Production branch** - always stable
+- Only through PR from `develop`
+- Automatic releases when creating tags
+- Protected from direct commits
 
 ### `develop`
-- 🔧 **Ветка разработки** - интеграция новых функций
-- Базовая ветка для feature веток
-- Регулярные merge в `main` для релизов
+- 🔧 **Development branch** - integration of new features
+- Base branch for feature branches
+- Regular merges to `main` for releases
 
 ### `feature/*`
-- ✨ **Ветки функций** - новые возможности
-- Создаются из `develop`
-- Мержатся обратно в `develop` через PR
+- ✨ **Feature branches** - new functionality
+- Created from `develop`
+- Merged back to `develop` via PR
 
 ### `hotfix/*`
-- 🚨 **Критические исправления**
-- Создаются из `main`
-- Мержатся в `main` и `develop`
+- 🚨 **Critical fixes**
+- Created from `main`
+- Merged to both `main` and `develop`
 
-## Процесс релиза
+## Release Process
 
-1. **Разработка**: `feature/new-auth` → `develop`
-2. **Тестирование**: в ветке `develop`
-3. **Релиз**: `develop` → `main` + создание тега `v1.2.3`
-4. **Автоматика**: GitHub Actions создает релиз и Docker образы
+1. **Development**: `feature/new-auth` → `develop`
+2. **Testing**: in `develop` branch
+3. **Release**: `develop` → `main` + create tag `v1.2.3`
+4. **Automation**: GitHub Actions creates release and Docker images
 
-## Версионирование (SemVer)
+## Versioning (SemVer)
 
-- `v1.0.0` - мажорная версия (breaking changes)
-- `v1.1.0` - минорная версия (новые функции)
-- `v1.1.1` - патч (исправления)
+- `v1.0.0` - major version (breaking changes)
+- `v1.1.0` - minor version (new features)
+- `v1.1.1` - patch (bug fixes)
 
-## Команды
+## Commands
 
 ```bash
-# Создание feature ветки
+# Create feature branch
 git checkout develop
 git pull origin develop
 git checkout -b feature/new-feature
 
-# Создание релиза
+# Create release
 git checkout main
 git merge develop
 git tag v1.2.3

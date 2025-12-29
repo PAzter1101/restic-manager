@@ -1,29 +1,31 @@
-# Участие в разработке
+# Contributing
 
-Спасибо за интерес к проекту! 🎉
+**[🇷🇺 Русская версия](CONTRIBUTING.ru.md)**
 
-## Как внести вклад
+Thanks for your interest in the project! 🎉
 
-1. Форкните репозиторий
-2. Создайте ветку для новой функции (`git checkout -b feature/amazing-feature`)
-3. Внесите изменения
-4. Запустите тесты (`cd app && python -m pytest ../tests/ -v`)
-5. Проверьте код линтерами (`black . && isort . && flake8 .`)
-6. Закоммитьте изменения (`git commit -m 'Add amazing feature'`)
-7. Запушьте в ветку (`git push origin feature/amazing-feature`)
-8. Создайте Pull Request
+## How to Contribute
 
-## Стиль кода
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Run tests (`cd app && python -m pytest ../tests/ -v`)
+5. Check code with linters (`black . && isort . && flake8 .`)
+6. Commit your changes (`git commit -m 'Add amazing feature'`)
+7. Push to the branch (`git push origin feature/amazing-feature`)
+8. Create a Pull Request
 
-- Используем Black для форматирования
-- Максимальная длина строки: 88 символов
-- Импорты сортируются через isort
-- Код проверяется flake8 и mypy
+## Code Style
 
-## Запуск локально
+- We use Black for formatting
+- Maximum line length: 88 characters
+- Imports are sorted with isort
+- Code is checked with flake8 and mypy
+
+## Running Locally
 
 ```bash
 cp .env.example .env
-# Отредактируйте .env
+# Edit .env
 docker-compose up -d
 ```
