@@ -6,3 +6,4 @@ pyjwt==2.10.1
 lz4==4.4.5
 pydantic==2.10.4
 pydantic-settings==2.7.1
+requests==2.32.3

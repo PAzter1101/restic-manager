@@ -36,10 +36,26 @@ async def dashboard(request: Request, access_token: str = Cookie(None)):
 async def get_snapshots(
     user=Depends(verify_token),
     host: Optional[str] = None, 
-    tag: Optional[str] = None
+    tag: Optional[str] = None,
+    page: int = 1,
+    limit: int = 25
 ):
     """Get list of snapshots."""
-    return restic_service.get_snapshots(host, tag)
+    snapshots = restic_service.get_snapshots(host, tag)
+    
+    # Простая пагинация
+    total = len(snapshots)
+    start = (page - 1) * limit
+    end = start + limit
+    paginated_snapshots = snapshots[start:end]
+    
+    return {
+        "snapshots": paginated_snapshots,
+        "total": total,
+        "page": page,
+        "limit": limit,
+        "total_pages": (total + limit - 1) // limit
+    }
 
 
 @router.get("/snapshot/{snapshot_id}/size")
@@ -49,10 +65,18 @@ async def get_snapshot_size(snapshot_id: str, user=Depends(verify_token)):
     return {"size": size}
 
 
-@router.get("/snapshot/{snapshot_id}/files")
-async def get_snapshot_files(snapshot_id: str, user=Depends(verify_token)):
+@router.get("/snapshots/{snapshot_id}/files")
+async def get_snapshot_files(
+    snapshot_id: str, 
+    path: str = "/",
+    user=Depends(verify_token)
+):
     """Get files in snapshot."""
-    return restic_service.get_snapshot_files(snapshot_id)
+    try:
+        files = restic_service.get_snapshot_files(snapshot_id)
+        return {"files": files}
+    except Exception as e:
+        return {"files": [], "error": str(e)}
 
 
 @router.post("/upload", response_model=BackupResponse)

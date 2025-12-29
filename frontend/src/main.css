@@ -1,0 +1,189 @@
+/* Main stylesheet - imports all style modules */
+
+/* 1. Design tokens (CSS custom properties) */
+@import './styles/tokens.css';
+
+/* 2. Base styles and reset */
+@import './styles/base.css';
+
+/* 3. Layout styles */
+@import './styles/layout.css';
+
+/* 4. Component styles */
+@import './styles/components/button.css';
+@import './styles/components/form.css';
+@import './styles/components/table.css';
+@import './styles/components/modal.css';
+@import './styles/components/filters.css';
+
+/* 5. Utility classes */
+@import './styles/utilities.css';
+
+/* 6. Component-specific styles */
+
+/* Login page */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: var(--space-lg);
+}
+
+.login-form {
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-form h1 {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  color: var(--text-inverse);
+  font-size: 2rem;
+}
+
+/* Pagination component */
+.pagination-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-lg);
+  border-top: 1px solid var(--glass-border);
+  margin-top: var(--space-lg);
+}
+
+.pagination-info {
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.pagination-buttons {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.pagination-dots {
+  padding: var(--space-sm);
+  color: var(--text-muted);
+}
+
+.page-size-select {
+  padding: var(--space-sm);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  background: var(--glass-bg);
+  color: var(--text-inverse);
+  backdrop-filter: blur(10px);
+}
+
+/* File browser specific styles */
+.file-browser-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: var(--z-modal-backdrop);
+  padding: var(--space-2xl);
+}
+
+.file-browser {
+  width: 100%;
+  max-width: 800px;
+  max-height: 80vh;
+}
+
+.file-browser-path {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+  padding: var(--space-lg) var(--space-xl);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.current-path {
+  color: var(--text-muted);
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
+  font-size: 0.9rem;
+}
+
+.file-browser-content {
+  flex: 1;
+  overflow: auto;
+  padding: var(--space-lg);
+}
+
+.file-table {
+  margin: 0;
+}
+
+.file-row {
+  cursor: pointer;
+  transition: background-color var(--transition-normal);
+}
+
+.file-row:hover {
+  background: var(--glass-border);
+}
+
+.file-icon {
+  margin-right: var(--space-sm);
+  font-size: 1.1em;
+}
+
+/* Filters */
+.filters {
+  padding: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+}
+
+.filter-row {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: end;
+}
+
+.filter-group {
+  flex: 1;
+}
+
+.filter-group label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+  color: var(--text-inverse);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pagination-container {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+  
+  .pagination-controls {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .file-browser-overlay {
+    padding: var(--space-lg);
+  }
+  
+  .file-browser {
+    max-height: 90vh;
+  }
+}
