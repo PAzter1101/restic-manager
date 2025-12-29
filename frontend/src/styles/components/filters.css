@@ -1,0 +1,112 @@
+/* Filters Component Styles */
+.filters-container {
+  padding: var(--space-xl);
+}
+
+.filters-form {
+  display: flex;
+  gap: var(--space-xl);
+  align-items: end;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+}
+
+.filter-label {
+  display: block;
+  margin-bottom: var(--space-sm);
+  font-weight: 500;
+  color: var(--text-inverse);
+  font-size: 0.875rem;
+}
+
+.filter-input-container {
+  position: relative;
+  z-index: 100001;
+}
+
+.filter-input {
+  width: 100%;
+  padding: var(--space-md);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  background: var(--glass-bg);
+  color: var(--text-inverse);
+  backdrop-filter: blur(10px);
+  transition: border-color var(--transition-normal);
+}
+
+.filter-input::placeholder {
+  color: var(--text-muted);
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.filter-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  z-index: 100000;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: var(--space-xs);
+}
+
+.filter-dropdown-item {
+  padding: var(--space-md);
+  cursor: pointer;
+  color: var(--text-inverse);
+  transition: background-color var(--transition-fast);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.filter-dropdown-item:hover {
+  background: var(--glass-bg);
+}
+
+.filter-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.filter-dropdown-item:hover {
+  background: var(--glass-bg);
+}
+
+.filter-dropdown-item:last-child {
+  border-bottom: none;
+}
+
+.filter-actions {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .filters-form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .filter-group {
+    min-width: auto;
+  }
+  
+  .filter-actions {
+    justify-content: center;
+  }
+}

@@ -1,6 +1,6 @@
 # Restic Web Manager
 
-[![Tests and Code Quality](https://github.com/pazter1101/restic-manager/workflows/Tests%20and%20Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
+[![Tests](https://github.com/pazter1101/restic-manager/workflows/Tests/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/pazter1101/restic-manager/badge)](https://www.codefactor.io/repository/github/pazter1101/restic-manager)
 [![codecov](https://codecov.io/gh/pazter1101/restic-manager/branch/main/graph/badge.svg)](https://codecov.io/gh/pazter1101/restic-manager)
@@ -9,25 +9,40 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/pazter1101/restic-manager)](https://github.com/pazter1101/restic-manager/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![React 18](https://img.shields.io/badge/react-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/typescript-5.3-blue.svg)](https://www.typescriptlang.org/)
 
 **[🇷🇺 Русская версия](README.ru.md)**
 
-Web interface for viewing and downloading backups from restic repository based on FastAPI.
+Modern web interface for viewing and downloading backups from restic repository. Built with FastAPI backend and React frontend.
 
 ## 🚀 Features
 
 - 🔐 User authentication via JWT tokens
-- 📸 View snapshots list
-- 🔍 Filter by hosts and tags
+- 📸 View snapshots list with pagination
+- 🔍 Advanced filtering by hosts and tags
 - ⬇️ Download files from snapshots via browser
-- ℹ️ View snapshot information
-- 📱 Responsive web interface
+- 📁 Interactive file browser for snapshots
+- ℹ️ Detailed snapshot information and statistics
+- 📱 Responsive React-based web interface
+- 🚀 Modern SPA architecture
+- 📊 Real-time snapshot size loading
+- 🎨 Clean and intuitive UI/UX
+
+## 🏗️ Architecture
+
+- **Backend**: FastAPI (Python 3.10+) with modular structure
+- **Frontend**: React 18 + TypeScript + Vite
+- **Testing**: pytest (backend) + Vitest + React Testing Library (frontend)
+- **Code Quality**: Black, isort, flake8, mypy, ESLint
+- **CI/CD**: GitHub Actions with automated testing and releases
+- **Containerization**: Multi-stage Docker builds
 
 ## Requirements
 
-- Docker
-- Docker Compose
+- Docker & Docker Compose
 - Access to S3 storage with restic repository
+- Modern web browser with JavaScript enabled
 
 ## Installation
 
@@ -66,7 +81,7 @@ Web interface for viewing and downloading backups from restic repository based o
 
 2. Run application:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 ## Usage
@@ -78,18 +93,42 @@ Web interface for viewing and downloading backups from restic repository based o
 
 ## Testing
 
-To run tests:
+### Backend Tests
 ```bash
 pip install -r requirements-test.txt
 cd app && python -m pytest ../tests/ -v
 ```
 
+### Frontend Tests
+```bash
+cd frontend
+npm ci
+npm test -- --run
+```
+
+### Code Quality
+```bash
+# Python
+black --check .
+isort --check-only .
+flake8 .
+mypy --ignore-missing-imports app/
+
+# TypeScript
+cd frontend
+npm run lint
+npx tsc --noEmit
+```
+
 ## API
 
-- `GET /` - main page
-- `POST /login` - authentication
-- `GET /snapshots` - snapshots list
-- `GET /download/{snapshot_id}/{path}` - file download
+- `GET /` - serve React SPA
+- `POST /api/login` - user authentication
+- `GET /api/snapshots` - get snapshots list with pagination and filtering
+- `GET /api/snapshot/{snapshot_id}/size` - get snapshot size
+- `GET /api/snapshots/{snapshot_id}/files` - get files in snapshot
+- `POST /api/upload` - upload files and create backup
+- `GET /api/download/{snapshot_id}` - download files from snapshot
 
 ## 🤝 Contributing
 

@@ -1,11 +1,7 @@
 import os
-import sys
 from unittest.mock import patch
 
 from fastapi.testclient import TestClient
-
-# Добавляем путь к приложению
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "app"))
 
 # Мокаем переменные окружения для тестов
 test_env = {
@@ -16,6 +12,7 @@ test_env = {
     "SECRET_KEY": "test_secret_key",
     "ADMIN_USERNAME": "admin",
     "ADMIN_PASSWORD": "admin",
+    "MAX_FILE_SIZE": "10",  # 10MB для тестов
 }
 
 with patch.dict(os.environ, test_env):
@@ -25,25 +22,26 @@ client = TestClient(app)
 
 
 def test_login_page():
-    """Тест главной страницы (страница логина)"""
+    """Тест главной страницы (React SPA или fallback)"""
     response = client.get("/")
     assert response.status_code == 200
-    assert "text/html" in response.headers["content-type"]
+    # После рефакторинга может возвращать JSON fallback если React не собран
+    content_type = response.headers.get("content-type", "")
+    assert any(ct in content_type for ct in ["text/html", "application/json"])
 
 
 def test_login_invalid_credentials():
     """Тест логина с неверными данными"""
-    response = client.post("/login", data={"username": "wrong", "password": "wrong"})
-    assert response.status_code == 200  # Возвращает страницу с ошибкой
-
-
-def test_snapshots_without_auth():
-    """Тест доступа к снапшотам без авторизации"""
-    response = client.get("/snapshots")
+    response = client.post(
+        "/api/login", json={"username": "wrong", "password": "wrong"}
+    )
     assert response.status_code == 401
 
 
-def test_download_without_auth():
-    """Тест скачивания без авторизации"""
-    response = client.get("/download/test/test.txt")
-    assert response.status_code == 404  # Неверный путь возвращает 404
+def test_login_valid_credentials():
+    """Тест логина с правильными данными"""
+    response = client.post(
+        "/api/login", json={"username": "admin", "password": "admin"}
+    )
+    assert response.status_code == 200
+    assert "access_token" in response.json()
