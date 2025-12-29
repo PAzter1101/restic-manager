@@ -2,6 +2,10 @@
 
 [![Build and Push Docker Image](https://github.com/pazter1101/restic-manager/workflows/Build%20and%20Push%20Docker%20Image/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=flat&logo=docker&logoColor=white)](https://hub.docker.com/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-005571?style=flat&logo=fastapi)](https://fastapi.tiangolo.com/)
 
 Веб-интерфейс для просмотра и скачивания бекапов из restic репозитория на базе FastAPI.
 
@@ -79,3 +83,17 @@ cd app && python -m pytest ../tests/ -v
 - `POST /login` - авторизация
 - `GET /snapshots` - список снапшотов
 - `GET /download/{snapshot_id}/{path}` - скачивание файла
+
+## 🤝 Участие в разработке
+
+Читайте [CONTRIBUTING.md](CONTRIBUTING.md) для получения информации о том, как внести вклад в проект.
+
+## 📄 Лицензия
+
+Этот проект лицензирован под MIT License - см. файл [LICENSE](LICENSE) для деталей.
+
+## 🙏 Благодарности
+
+- [Restic](https://restic.net/) - за отличный инструмент резервного копирования
+- [FastAPI](https://fastapi.tiangolo.com/) - за современный веб-фреймворк
+- Всем участникам, которые помогают улучшать проект
