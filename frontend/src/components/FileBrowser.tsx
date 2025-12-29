@@ -21,9 +21,9 @@ export default function FileBrowser({ snapshot, onClose }: FileBrowserProps) {
     setError('')
     try {
       const response = await snapshotService.getSnapshotFiles(snapshot.id, path)
-      const fileList = response.files || []
+      const fileList: SnapshotFile[] = response || []
       setFiles(fileList)
-    } catch (err) {
+    } catch {
       setError('Ошибка загрузки файлов')
       setFiles([])
     } finally {

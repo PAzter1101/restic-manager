@@ -1,9 +1,14 @@
 import { useState } from 'react'
 
+interface Snapshot {
+  hostname: string
+  tags?: string[]
+}
+
 interface FiltersProps {
   onFilter: (filters: { host?: string; tag?: string }) => void
   loading: boolean
-  snapshots: any[]
+  snapshots: Snapshot[]
 }
 
 export default function FiltersSimple({ onFilter, loading, snapshots }: FiltersProps) {

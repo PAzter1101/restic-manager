@@ -1,14 +1,14 @@
 """Backup operations router."""
+
 import os
 import subprocess
 from typing import List, Optional
 
+from auth import verify_token
+from config import settings
 from fastapi import APIRouter, Cookie, Depends, File, HTTPException, Request, UploadFile
 from fastapi.responses import HTMLResponse, RedirectResponse, StreamingResponse
 from fastapi.templating import Jinja2Templates
-
-from auth import verify_token
-from config import settings
 from schemas.backup import BackupResponse
 from services.restic import restic_service
 
@@ -35,26 +35,26 @@ async def dashboard(request: Request, access_token: str = Cookie(None)):
 @router.get("/snapshots")
 async def get_snapshots(
     user=Depends(verify_token),
-    host: Optional[str] = None, 
+    host: Optional[str] = None,
     tag: Optional[str] = None,
     page: int = 1,
-    limit: int = 25
+    limit: int = 25,
 ):
     """Get list of snapshots."""
     snapshots = restic_service.get_snapshots(host, tag)
-    
+
     # Простая пагинация
     total = len(snapshots)
     start = (page - 1) * limit
     end = start + limit
     paginated_snapshots = snapshots[start:end]
-    
+
     return {
         "snapshots": paginated_snapshots,
         "total": total,
         "page": page,
         "limit": limit,
-        "total_pages": (total + limit - 1) // limit
+        "total_pages": (total + limit - 1) // limit,
     }
 
 
@@ -67,9 +67,7 @@ async def get_snapshot_size(snapshot_id: str, user=Depends(verify_token)):
 
 @router.get("/snapshots/{snapshot_id}/files")
 async def get_snapshot_files(
-    snapshot_id: str, 
-    path: str = "/",
-    user=Depends(verify_token)
+    snapshot_id: str, path: str = "/", user=Depends(verify_token)
 ):
     """Get files in snapshot."""
     try:
@@ -83,19 +81,23 @@ async def get_snapshot_files(
 async def upload_files(
     user=Depends(verify_token),
     files: List[UploadFile] = File(...),
-    tags: Optional[str] = None
+    tags: Optional[str] = None,
 ):
     """Upload files and create backup."""
     if not files:
         raise HTTPException(status_code=400, detail="No files provided")
-    
+
     # Парсим теги
     tag_list = []
     if tags:
         tag_list = [tag.strip() for tag in tags.split(",") if tag.strip()]
-    
+
     result = restic_service.create_backup(files, tag_list)
-    return BackupResponse(**result)
+    return BackupResponse(
+        message=result["message"],
+        files_count=int(result["files_count"]),
+        snapshot_id=result.get("snapshot_id", ""),
+    )
 
 
 @router.get("/download/{snapshot_id}")
@@ -103,10 +105,10 @@ async def download_snapshot_files(snapshot_id: str, user=Depends(verify_token)):
     """Download files from snapshot."""
     # Получаем список файлов в снапшоте
     files = restic_service.get_snapshot_files(snapshot_id)
-    
+
     # Фильтруем только файлы (не директории)
     file_list = [f for f in files if f.get("type") == "file"]
-    
+
     if not file_list:
         raise HTTPException(status_code=404, detail="No files found in snapshot")
 

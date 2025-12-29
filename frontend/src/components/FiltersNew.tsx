@@ -1,10 +1,15 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
+
+interface Snapshot {
+  hostname: string
+  tags?: string[]
+}
 
 interface FiltersProps {
   onFilter: (filters: { host?: string; tag?: string }) => void
   loading: boolean
-  snapshots: any[]
+  snapshots: Snapshot[]
 }
 
 export default function Filters({ onFilter, loading, snapshots }: FiltersProps) {
@@ -12,7 +17,6 @@ export default function Filters({ onFilter, loading, snapshots }: FiltersProps) 
   const [tag, setTag] = useState('')
   const [showHostDropdown, setShowHostDropdown] = useState(false)
   const [showTagDropdown, setShowTagDropdown] = useState(false)
-  const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0, width: 0 })
   
   const hostInputRef = useRef<HTMLInputElement>(null)
   const tagInputRef = useRef<HTMLInputElement>(null)
@@ -24,23 +28,6 @@ export default function Filters({ onFilter, loading, snapshots }: FiltersProps) 
   const filteredHosts = uniqueHosts.filter(h => 
     h.toLowerCase().includes(host.toLowerCase())
   )
-  
-  const filteredTags = uniqueTags.filter(t => {
-    const currentTags = tag.split(',').map(t => t.trim()).filter(Boolean)
-    const lastTag = tag.split(',').pop()?.trim() || ''
-    return t.toLowerCase().includes(lastTag.toLowerCase()) && !currentTags.includes(t)
-  })
-
-  const updateDropdownPosition = (inputRef: React.RefObject<HTMLInputElement>) => {
-    if (inputRef.current) {
-      const rect = inputRef.current.getBoundingClientRect()
-      setDropdownPosition({
-        top: rect.bottom + window.scrollY,
-        left: rect.left + window.scrollX,
-        width: rect.width
-      })
-    }
-  }
 
   const handleHostFocus = () => {
     setShowHostDropdown(true)

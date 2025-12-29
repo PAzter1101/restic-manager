@@ -19,7 +19,7 @@ export default function Login({ onLogin }: LoginProps) {
     try {
       await authService.login(username, password)
       onLogin()
-    } catch (err) {
+    } catch {
       setError('Неверные учетные данные')
     } finally {
       setLoading(false)

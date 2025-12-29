@@ -49,7 +49,7 @@ export default function SnapshotList({ onLogout }: SnapshotListProps) {
       setSnapshots(response.snapshots || [])
       setTotalPages(response.total_pages || 1)
       setTotalItems(response.total || 0)
-    } catch (err) {
+    } catch {
       setError('Ошибка загрузки снапшотов')
       setSnapshots([])
     } finally {

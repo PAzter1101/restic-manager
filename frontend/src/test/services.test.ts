@@ -43,7 +43,7 @@ describe('Auth Service', () => {
       }
     }
     
-    vi.mocked(axios.create).mockReturnValue(mockApi as any)
+    vi.mocked(axios.create).mockReturnValue(mockApi as typeof axios)
     
     const { authService } = await import('../services/auth')
     const result = await authService.login('admin', 'password')

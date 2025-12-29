@@ -1,9 +1,6 @@
 import os
-import sys
-from io import BytesIO
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
-import pytest
 from fastapi.testclient import TestClient
 
 # Мокаем переменные окружения для тестов
@@ -33,12 +30,16 @@ def test_login_page():
 
 def test_login_invalid_credentials():
     """Тест логина с неверными данными"""
-    response = client.post("/api/login", json={"username": "wrong", "password": "wrong"})
+    response = client.post(
+        "/api/login", json={"username": "wrong", "password": "wrong"}
+    )
     assert response.status_code == 401
 
 
 def test_login_valid_credentials():
     """Тест логина с правильными данными"""
-    response = client.post("/api/login", json={"username": "admin", "password": "admin"})
+    response = client.post(
+        "/api/login", json={"username": "admin", "password": "admin"}
+    )
     assert response.status_code == 200
     assert "access_token" in response.json()

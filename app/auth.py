@@ -1,29 +1,28 @@
 """Authentication utilities."""
+
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Dict, Optional
 
 import jwt
-from fastapi import Cookie, HTTPException
-
 from config import settings
+from fastapi import Cookie, HTTPException
 
 
 def create_access_token(username: str) -> str:
     """Create JWT access token."""
-    payload = {
-        "username": username,
-        "exp": datetime.utcnow() + timedelta(hours=24)
-    }
+    payload = {"username": username, "exp": datetime.utcnow() + timedelta(hours=24)}
     return jwt.encode(payload, settings.SECRET_KEY, algorithm="HS256")
 
 
-def verify_token(access_token: Optional[str] = Cookie(None)) -> dict:
+def verify_token(access_token: Optional[str] = Cookie(None)) -> Dict[str, str]:
     """Verify JWT token and return payload."""
     if not access_token:
         raise HTTPException(status_code=401, detail="Not authenticated")
-    
+
     try:
-        payload = jwt.decode(access_token, settings.SECRET_KEY, algorithms=["HS256"])
+        payload: Dict[str, str] = jwt.decode(
+            access_token, settings.SECRET_KEY, algorithms=["HS256"]
+        )
         return payload
     except jwt.ExpiredSignatureError:
         raise HTTPException(status_code=401, detail="Token expired")
