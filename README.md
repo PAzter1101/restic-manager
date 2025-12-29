@@ -102,8 +102,8 @@ cd app && python -m pytest ../tests/ -v
 ### Frontend Tests
 ```bash
 cd frontend
-npm install
-npm test
+npm ci
+npm test -- --run
 ```
 
 ### Code Quality
