@@ -1,0 +1,187 @@
+/* Layout Styles */
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-2xl);
+}
+
+.container--sm {
+  max-width: 640px;
+}
+
+.container--lg {
+  max-width: 1400px;
+}
+
+.container--fluid {
+  max-width: none;
+}
+
+/* Header */
+.header {
+  background: var(--bg-secondary);
+  color: var(--text-inverse);
+  box-shadow: var(--shadow-lg);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.header__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xl) var(--space-2xl);
+  min-height: 4rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header__title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-inverse);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+/* Main content area */
+.main {
+  flex: 1;
+  padding: var(--space-2xl) 0;
+}
+
+/* Page layouts */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page--centered {
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xl);
+}
+
+/* Card layouts */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+}
+
+.card__header {
+  padding: var(--space-xl);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.card__body {
+  padding: var(--space-xl);
+}
+
+.card__footer {
+  padding: var(--space-xl);
+  border-top: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Grid layouts */
+.grid {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid--3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid--4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.grid--auto {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+/* Stack layouts */
+.stack {
+  display: flex;
+  flex-direction: column;
+}
+
+.stack--sm > * + * {
+  margin-top: var(--space-sm);
+}
+
+.stack--md > * + * {
+  margin-top: var(--space-md);
+}
+
+.stack--lg > * + * {
+  margin-top: var(--space-lg);
+}
+
+.stack--xl > * + * {
+  margin-top: var(--space-xl);
+}
+
+/* Responsive breakpoints */
+@media (max-width: 1200px) {
+  .container {
+    padding: 0 var(--space-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 var(--space-lg);
+  }
+  
+  .header__content {
+    padding: var(--space-lg);
+  }
+  
+  .header__title {
+    font-size: 1.25rem;
+  }
+  
+  .main {
+    padding: var(--space-lg) 0;
+  }
+  
+  .card__header,
+  .card__body,
+  .card__footer {
+    padding: var(--space-lg);
+  }
+  
+  .grid--2,
+  .grid--3,
+  .grid--4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 var(--space-md);
+  }
+  
+  .page--centered {
+    padding: var(--space-lg);
+  }
+}
