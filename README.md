@@ -3,7 +3,7 @@
 [![Build and Push Docker Image](https://github.com/pazter1101/restic-manager/workflows/Build%20and%20Push%20Docker%20Image/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
 Веб-интерфейс для просмотра и скачивания бекапов из restic репозитория на базе FastAPI.
 
