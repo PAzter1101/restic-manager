@@ -1,6 +1,6 @@
 # Restic Web Manager
 
-[![Tests and Code Quality](https://github.com/pazter1101/restic-manager/workflows/Tests%20and%20Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
+[![Tests](https://github.com/pazter1101/restic-manager/workflows/Tests/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/pazter1101/restic-manager/badge)](https://www.codefactor.io/repository/github/pazter1101/restic-manager)
 [![codecov](https://codecov.io/gh/pazter1101/restic-manager/branch/main/graph/badge.svg)](https://codecov.io/gh/pazter1101/restic-manager)
@@ -9,25 +9,40 @@
 [![GitHub Release Date](https://img.shields.io/github/release-date/pazter1101/restic-manager)](https://github.com/pazter1101/restic-manager/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![React 18](https://img.shields.io/badge/react-18-blue.svg)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/typescript-5.3-blue.svg)](https://www.typescriptlang.org/)
 
 **[🇺🇸 English version](README.md)**
 
-Веб-интерфейс для просмотра и скачивания бекапов из restic репозитория на базе FastAPI.
+Современный веб-интерфейс для просмотра и скачивания бекапов из restic репозитория. Построен на FastAPI бэкенде и React фронтенде.
 
 ## 🚀 Возможности
 
 - 🔐 Авторизация пользователей через JWT токены
-- 📸 Просмотр списка снапшотов
-- 🔍 Фильтрация по хостам и тегам
+- 📸 Просмотр списка снапшотов с пагинацией
+- 🔍 Расширенная фильтрация по хостам и тегам
 - ⬇️ Скачивание файлов из снапшотов через браузер
-- ℹ️ Просмотр информации о снапшотах
-- 📱 Веб-интерфейс с адаптивным дизайном
+- 📁 Интерактивный браузер файлов для снапшотов
+- ℹ️ Детальная информация о снапшотах и статистика
+- 📱 Адаптивный веб-интерфейс на React
+- 🚀 Современная SPA архитектура
+- 📊 Загрузка размеров снапшотов в реальном времени
+- 🎨 Чистый и интуитивный UI/UX
+
+## 🏗️ Архитектура
+
+- **Бэкенд**: FastAPI (Python 3.10+) с модульной структурой
+- **Фронтенд**: React 18 + TypeScript + Vite
+- **Тестирование**: pytest (бэкенд) + Vitest + React Testing Library (фронтенд)
+- **Качество кода**: Black, isort, flake8, mypy, ESLint
+- **CI/CD**: GitHub Actions с автоматическим тестированием и релизами
+- **Контейнеризация**: Многоэтапная сборка Docker
 
 ## Требования
 
-- Docker
-- Docker Compose
+- Docker & Docker Compose
 - Доступ к S3 хранилищу с restic репозиторием
+- Современный браузер с поддержкой JavaScript
 
 ## Установка
 
@@ -76,18 +91,42 @@
 
 ## Тестирование
 
-Для запуска тестов:
+### Тесты бэкенда
 ```bash
 pip install -r requirements-test.txt
 cd app && python -m pytest ../tests/ -v
 ```
 
+### Тесты фронтенда
+```bash
+cd frontend
+npm install
+npm test
+```
+
+### Качество кода
+```bash
+# Python
+black --check .
+isort --check-only .
+flake8 .
+mypy --ignore-missing-imports app/
+
+# TypeScript
+cd frontend
+npm run lint
+npx tsc --noEmit
+```
+
 ## API
 
-- `GET /` - главная страница
-- `POST /login` - авторизация
-- `GET /snapshots` - список снапшотов
-- `GET /download/{snapshot_id}/{path}` - скачивание файла
+- `GET /` - обслуживание React SPA
+- `POST /api/login` - авторизация пользователя
+- `GET /api/snapshots` - получение списка снапшотов с пагинацией и фильтрацией
+- `GET /api/snapshot/{snapshot_id}/size` - получение размера снапшота
+- `GET /api/snapshots/{snapshot_id}/files` - получение файлов в снапшоте
+- `POST /api/upload` - загрузка файлов и создание бэкапа
+- `GET /api/download/{snapshot_id}` - скачивание файлов из снапшота
 
 ## 🤝 Участие в разработке
 
