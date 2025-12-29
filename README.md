@@ -7,71 +7,75 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
-Веб-интерфейс для просмотра и скачивания бекапов из restic репозитория на базе FastAPI.
+**[🇷🇺 Русская версия](README.ru.md)**
 
-## 🚀 Возможности
+Web interface for viewing and downloading backups from restic repository based on FastAPI.
 
-- 🔐 Авторизация пользователей через JWT токены
-- 📸 Просмотр списка снапшотов
-- 🔍 Фильтрация по хостам и тегам
-- ⬇️ Скачивание файлов из снапшотов через браузер
-- ℹ️ Просмотр информации о снапшотах
-- 📱 Веб-интерфейс с адаптивным дизайном
+## 🚀 Features
 
-## Требования
+- 🔐 User authentication via JWT tokens
+- 📸 View snapshots list
+- 🔍 Filter by hosts and tags
+- ⬇️ Download files from snapshots via browser
+- ℹ️ View snapshot information
+- 📱 Responsive web interface
+
+## Requirements
 
 - Docker
 - Docker Compose
-- Доступ к S3 хранилищу с restic репозиторием
+- Access to S3 storage with restic repository
 
-## Установка
+## Installation
 
-### Вариант 1: Готовый Docker образ
+### Option 1: Ready Docker Image
 
-1. Создайте `.env` файл с настройками:
+1. Create `.env` file with settings:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit `.env`:
    ```
    RESTIC_REPOSITORY=s3:https://s3.example.com/your-backup-bucket
-   RESTIC_PASSWORD=ваш_пароль_restic
-   AWS_ACCESS_KEY_ID=ваш_ключ_доступа
-   AWS_SECRET_ACCESS_KEY=ваш_секретный_ключ
-   SECRET_KEY=случайная_строка_для_jwt
+   RESTIC_PASSWORD=your_restic_password
+   AWS_ACCESS_KEY_ID=your_access_key
+   AWS_SECRET_ACCESS_KEY=your_secret_key
+   SECRET_KEY=random_string_for_jwt
    ADMIN_USERNAME=admin
-   ADMIN_PASSWORD=ваш_пароль_админа
+   ADMIN_PASSWORD=your_admin_password
    ```
 
-2. Запустите контейнер:
+2. Run container:
    ```bash
-   # Из GitHub Container Registry
-   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-web-manager:latest
-   
-   # Или из Docker Hub
-   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-web-manager:latest
+   # From GitHub Container Registry
+   docker run -d -p 8000:8000 --env-file .env ghcr.io/username/restic-web-manager:latest
    ```
 
-3. Откройте http://localhost:8000 в браузере
+3. Open http://localhost:8000 in browser
 
-### Вариант 2: Сборка из исходников
+### Option 2: Build from Source
 
-1. Скопируйте `.env.example` в `.env` и настройте переменные:
+1. Copy `.env.example` to `.env` and configure variables:
    ```bash
    cp .env.example .env
    ```
 
-2. Запустите приложение:
+2. Run application:
    ```bash
    docker-compose up -d
    ```
 
-## Использование
+## Usage
 
-1. Войдите используя учетные данные из `.env`
-2. Просматривайте список снапшотов
-3. Фильтруйте по хостам и тегам
-4. Кликните на файл для скачивания
+1. Login using credentials from `.env`
+2. Browse snapshots list
+3. Filter by hosts and tags
+4. Click on file to download
 
-## Тестирование
+## Testing
 
-Для запуска тестов:
+To run tests:
 ```bash
 pip install -r requirements-test.txt
 cd app && python -m pytest ../tests/ -v
@@ -79,21 +83,21 @@ cd app && python -m pytest ../tests/ -v
 
 ## API
 
-- `GET /` - главная страница
-- `POST /login` - авторизация
-- `GET /snapshots` - список снапшотов
-- `GET /download/{snapshot_id}/{path}` - скачивание файла
+- `GET /` - main page
+- `POST /login` - authentication
+- `GET /snapshots` - snapshots list
+- `GET /download/{snapshot_id}/{path}` - file download
 
-## 🤝 Участие в разработке
+## 🤝 Contributing
 
-Читайте [CONTRIBUTING.md](CONTRIBUTING.md) для получения информации о том, как внести вклад в проект.
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute to the project.
 
-## 📄 Лицензия
+## 📄 License
 
-Этот проект лицензирован под MIT License - см. файл [LICENSE](LICENSE) для деталей.
+This project is licensed under MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🙏 Благодарности
+## 🙏 Acknowledgments
 
-- [Restic](https://restic.net/) - за отличный инструмент резервного копирования
-- [FastAPI](https://fastapi.tiangolo.com/) - за современный веб-фреймворк
-- Всем участникам, которые помогают улучшать проект
+- [Restic](https://restic.net/) - for excellent backup tool
+- [FastAPI](https://fastapi.tiangolo.com/) - for modern web framework
+- All contributors who help improve the project
