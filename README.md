@@ -19,12 +19,9 @@
 
 ## Установка
 
-1. Скопируйте `.env.example` в `.env` и настройте переменные:
-   ```bash
-   cp .env.example .env
-   ```
+### Вариант 1: Готовый Docker образ
 
-2. Отредактируйте `.env` файл:
+1. Создайте `.env` файл с настройками:
    ```
    RESTIC_REPOSITORY=s3:https://s3.example.com/your-backup-bucket
    RESTIC_PASSWORD=ваш_пароль_restic
@@ -35,12 +32,28 @@
    ADMIN_PASSWORD=ваш_пароль_админа
    ```
 
-3. Запустите приложение:
+2. Запустите контейнер:
+   ```bash
+   # Из GitHub Container Registry
+   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-web-manager:latest
+   
+   # Или из Docker Hub
+   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-web-manager:latest
+   ```
+
+3. Откройте http://localhost:8000 в браузере
+
+### Вариант 2: Сборка из исходников
+
+1. Скопируйте `.env.example` в `.env` и настройте переменные:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Запустите приложение:
    ```bash
    docker-compose up -d
    ```
-
-4. Откройте http://localhost:8000 в браузере
 
 ## Использование
 
