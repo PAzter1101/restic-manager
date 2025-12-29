@@ -2,7 +2,7 @@ name: Sync Develop
 
 on:
   workflow_run:
-    workflows: ["Semantic Release"]
+    workflows: ["Tests and Release"]
     types:
       - completed
     branches: [main]
