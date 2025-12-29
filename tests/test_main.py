@@ -33,12 +33,12 @@ def test_login_page():
 
 def test_login_invalid_credentials():
     """Тест логина с неверными данными"""
-    response = client.post("/login", data={"username": "wrong", "password": "wrong"}, follow_redirects=False)
-    assert response.status_code == 302  # Редирект на страницу с ошибкой
+    response = client.post("/api/login", json={"username": "wrong", "password": "wrong"})
+    assert response.status_code == 401
 
 
 def test_login_valid_credentials():
     """Тест логина с правильными данными"""
-    response = client.post("/login", data={"username": "admin", "password": "admin"}, follow_redirects=False)
-    assert response.status_code == 302  # Редирект на dashboard
-    assert "access_token" in response.cookies
+    response = client.post("/api/login", json={"username": "admin", "password": "admin"})
+    assert response.status_code == 200
+    assert "access_token" in response.json()
