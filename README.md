@@ -62,6 +62,14 @@
 3. Фильтруйте по хостам и тегам
 4. Кликните на файл для скачивания
 
+## Тестирование
+
+Для запуска тестов:
+```bash
+pip install -r requirements-test.txt
+cd app && python -m pytest ../tests/ -v
+```
+
 ## API
 
 - `GET /` - главная страница
