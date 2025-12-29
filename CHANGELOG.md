@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/PAzter1101/restic-manager/compare/v1.1.0...v1.1.1) (2025-12-29)
+
+
+### Bug Fixes
+
+* ensure semantic-release waits for all matrix test jobs ([36ceba5](https://github.com/PAzter1101/restic-manager/commit/36ceba54e8fdda68819a1ab0d711cc134b32f70f))
+
 # [1.1.0](https://github.com/PAzter1101/restic-manager/compare/v1.0.0...v1.1.0) (2025-12-29)
 
 
