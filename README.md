@@ -3,6 +3,8 @@
 [![Tests and Code Quality](https://github.com/pazter1101/restic-manager/workflows/Tests%20and%20Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![CodeFactor](https://www.codefactor.io/repository/github/pazter1101/restic-manager/badge)](https://www.codefactor.io/repository/github/pazter1101/restic-manager)
+[![codecov](https://codecov.io/gh/pazter1101/restic-manager/branch/main/graph/badge.svg)](https://codecov.io/gh/pazter1101/restic-manager)
+[![semantic-release: angular](https://img.shields.io/badge/semantic--release-angular-e10079?logo=semantic-release)](https://github.com/semantic-release/semantic-release)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/pazter1101/restic-manager)](https://github.com/pazter1101/restic-manager/releases/latest)
 [![GitHub Release Date](https://img.shields.io/github/release-date/pazter1101/restic-manager)](https://github.com/pazter1101/restic-manager/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
