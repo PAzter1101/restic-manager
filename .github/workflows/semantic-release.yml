@@ -35,9 +35,16 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npx semantic-release
 
+    - name: Setup Git for sync
+      if: success()
+      run: |
+        git config user.name "github-actions[bot]"
+        git config user.email "github-actions[bot]@users.noreply.github.com"
+
     - name: Sync changes back to develop
       if: success()
       run: |
+        git fetch origin develop
         git checkout develop
         git merge main --no-ff -m "chore: sync release changes from main"
         git push origin develop
