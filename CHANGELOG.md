@@ -1,3 +1,12 @@
+# [1.1.0](https://github.com/PAzter1101/restic-manager/compare/v1.0.0...v1.1.0) (2025-12-29)
+
+
+### Features
+
+* consolidate semantic-release into Tests workflow for reliability ([2b72019](https://github.com/PAzter1101/restic-manager/commit/2b7201981723a251594125fcc3880eea31aea115))
+* exclude merge commits from semantic-release trigger ([a6e2965](https://github.com/PAzter1101/restic-manager/commit/a6e2965fe8434f763ea1498785f08b64d2cc1a79))
+* fix semantic-release workflow execution order ([c29f748](https://github.com/PAzter1101/restic-manager/commit/c29f74854db09b0fff61ebd310b29a9cec731062))
+
 # 1.0.0 (2025-12-29)
 
 
