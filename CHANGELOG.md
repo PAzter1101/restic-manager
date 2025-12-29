@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/PAzter1101/restic-manager/compare/v1.1.2...v1.2.0) (2025-12-29)
+
+
+### Features
+
+* consolidate all CI/CD jobs into single workflow for reliability ([282cc14](https://github.com/PAzter1101/restic-manager/commit/282cc14863de98985a41276f93bac59abbf6bcde))
+
 ## [1.1.2](https://github.com/PAzter1101/restic-manager/compare/v1.1.1...v1.1.2) (2025-12-29)
 
 
