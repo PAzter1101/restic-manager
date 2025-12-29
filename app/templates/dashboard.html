@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restic Snapshots</title>
+    <link rel="stylesheet" href="/static/css/base.css">
+    <style>
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+        .filters { padding: 1.5rem; margin-bottom: 2rem; }
+        .filter-row { display: flex; gap: 1rem; align-items: end; }
+        .filter-group { flex: 1; }
+        .filter-group label { display: block; margin-bottom: 0.5rem; }
+        table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+        th, td { padding: 0.75rem 0.5rem; text-align: left; border-bottom: 1px solid var(--glass-border); }
+        th { background: var(--glass); font-weight: 600; user-select: none; }
+        th[onclick] { transition: background-color 0.2s; }
+        th[onclick]:hover { background: var(--glass-border); }
+        tr:hover { background: var(--glass); }
+        td code { background: var(--glass); padding: 2px 6px; border-radius: 4px; font-size: 0.8rem; }
+        .loading, .error, .empty { text-align: center; padding: 3rem; }
+        
+        .pagination-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 1rem;
+          border-top: 1px solid var(--glass-border);
+          margin-top: 1rem;
+        }
+        
+        .pagination-controls {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+        }
+        
+        .pagination-buttons {
+          display: flex;
+          gap: 0.25rem;
+        }
+        
+        .pagination-dots {
+          padding: 0.5rem;
+          color: var(--text-muted);
+        }
+        
+        .page-size-select {
+          padding: 0.5rem;
+          border: 1px solid var(--glass-border);
+          border-radius: 6px;
+          background: var(--glass);
+          color: var(--text);
+        }
+        
+        .btn-sm {
+          padding: 0.5rem 0.75rem;
+          font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📦 Restic Snapshots</h1>
+        <button class="btn btn-primary" id="logoutBtn">Выйти</button>
+    </div>
+    
+    <div class="container">
+        <div class="filters glass">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="hostFilter">Хост</label>
+                    <input type="text" id="hostFilter" class="input" placeholder="Фильтр по хосту">
+                </div>
+                <div class="filter-group">
+                    <label for="tagFilter">Тег</label>
+                    <input type="text" id="tagFilter" class="input" placeholder="Фильтр по тегу">
+                </div>
+                <button class="btn btn-primary" id="loadBtn">Загрузить</button>
+            </div>
+        </div>
+        
+        <div class="glass">
+            <div id="snapshots">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Загрузка снапшотов...</p>
+                </div>
+            </div>
+            <div id="pagination"></div>
+        </div>
+    </div>
+
+    <script src="/static/js/api.js"></script>
+    <script type="module" src="/static/js/snapshots.js"></script>
+</body>
+</html>
