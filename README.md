@@ -66,7 +66,7 @@ Web interface for viewing and downloading backups from restic repository based o
 
 2. Run application:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 
 ## Usage
