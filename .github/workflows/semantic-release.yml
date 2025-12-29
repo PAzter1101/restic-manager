@@ -8,6 +8,8 @@ permissions:
   contents: write
   issues: write
   pull-requests: write
+  actions: write
+  checks: write
 
 jobs:
   release:
@@ -31,3 +33,10 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: npx semantic-release
+
+    - name: Sync changes back to develop
+      if: success()
+      run: |
+        git checkout develop
+        git merge main --no-ff -m "chore: sync release changes from main"
+        git push origin develop
