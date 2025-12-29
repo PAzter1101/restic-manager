@@ -1,7 +1,9 @@
 # Restic Web Manager
 
-[![Build and Push Docker Image](https://github.com/pazter1101/restic-manager/workflows/Build%20and%20Push%20Docker%20Image/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
+[![Tests and Code Quality](https://github.com/pazter1101/restic-manager/workflows/Tests%20and%20Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/pazter1101/restic-manager)](https://github.com/pazter1101/restic-manager/releases/latest)
+[![GitHub Release Date](https://img.shields.io/github/release-date/pazter1101/restic-manager)](https://github.com/pazter1101/restic-manager/releases/latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 
