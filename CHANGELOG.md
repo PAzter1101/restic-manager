@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/PAzter1101/restic-manager/compare/v1.2.0...v1.2.1) (2025-12-29)
+
+
+### Bug Fixes
+
+* add permissions for develop branch sync ([d4e5c13](https://github.com/PAzter1101/restic-manager/commit/d4e5c13e12be216ac9185012a1363e1cc4f7b8a6))
+
 # [1.2.0](https://github.com/PAzter1101/restic-manager/compare/v1.1.2...v1.2.0) (2025-12-29)
 
 
