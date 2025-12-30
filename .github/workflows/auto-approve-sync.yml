@@ -1,0 +1,18 @@
+name: Auto-approve sync PRs
+
+on:
+  pull_request_target:
+    types: [opened]
+    branches: [develop]
+
+jobs:
+  auto-approve:
+    runs-on: ubuntu-latest
+    if: startsWith(github.head_ref, 'sync-main-to-develop-') && github.actor == 'github-actions[bot]'
+    permissions:
+      pull-requests: write
+    steps:
+    - name: Auto-approve PR
+      uses: hmarr/auto-approve-action@v4
+      with:
+        review-message: "Auto-approved sync PR from main to develop"
