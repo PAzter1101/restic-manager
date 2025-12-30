@@ -76,16 +76,9 @@ jobs:
         name: frontend-coverage
         fail_ci_if_error: false
 
-  tests-complete:
-    runs-on: ubuntu-latest
-    needs: [backend-test, frontend-test]
-    steps:
-    - name: Tests completed
-      run: echo "All tests completed successfully"
-
   semantic-release:
     runs-on: ubuntu-latest
-    needs: [tests-complete]
+    needs: [backend-test, frontend-test]
     if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'Merge branch')
     outputs:
       version: ${{ steps.release.outputs.version }}

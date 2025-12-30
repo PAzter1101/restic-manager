@@ -62,11 +62,11 @@
 2. Запустите контейнер:
    Из GitHub Container Registry
    ```bash
-   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-web-manager:latest
+   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:latest
    ```
    Или из Docker Hub
    ```bash
-   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-web-manager:latest
+   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-manager:latest
    ```
 
 3. Откройте http://localhost:8000 в браузере
