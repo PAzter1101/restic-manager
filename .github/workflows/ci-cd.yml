@@ -189,9 +189,10 @@ jobs:
         BRANCH_NAME="sync-main-to-develop-$(date +%s)"
         git checkout -b $BRANCH_NAME
         git push origin $BRANCH_NAME
-        gh pr create \
+        PR_NUMBER=$(gh pr create \
           --title "chore: sync release changes from main to develop" \
           --body "Auto-sync after release. This PR merges the latest changes from main branch to develop." \
           --base develop \
           --head $BRANCH_NAME \
-          --auto-merge
+          --json number --jq .number)
+        gh pr merge $PR_NUMBER --auto --merge
