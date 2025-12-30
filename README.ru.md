@@ -60,11 +60,12 @@
    ```
 
 2. Запустите контейнер:
+   Из GitHub Container Registry
    ```bash
-   # Из GitHub Container Registry
    docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-web-manager:latest
-   
-   # Или из Docker Hub
+   ```
+   Или из Docker Hub
+   ```bash
    docker run -d -p 8000:8000 --env-file .env pazter1101/restic-web-manager:latest
    ```
 

@@ -65,9 +65,13 @@ Modern web interface for viewing and downloading backups from restic repository.
    ```
 
 2. Run container:
+   From GitHub Container Registry
    ```bash
-   # From GitHub Container Registry
-   docker run -d -p 8000:8000 --env-file .env ghcr.io/username/restic-web-manager:latest
+   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-web-manager:latest
+   ```
+   Or from Docker Hub
+   ```bash
+   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-web-manager:latest
    ```
 
 3. Open http://localhost:8000 in browser
