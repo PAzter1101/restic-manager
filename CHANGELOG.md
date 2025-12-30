@@ -1,3 +1,20 @@
+## [1.3.2](https://github.com/PAzter1101/restic-manager/compare/v1.3.1...v1.3.2) (2025-12-30)
+
+
+### Bug Fixes
+
+* correct auto-merge command for sync PR ([80513c0](https://github.com/PAzter1101/restic-manager/commit/80513c0b93c92bcc536c6ff34997832a72e1815c))
+
+## 🐳 Docker Images
+
+- **GitHub Container Registry**: `ghcr.io/pazter1101/restic-manager:1.3.2`
+- **Docker Hub**: `pazter1101/restic-manager:1.3.2`
+
+### Usage
+```bash
+docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:1.3.2
+```
+
 ## [1.3.1](https://github.com/PAzter1101/restic-manager/compare/v1.3.0...v1.3.1) (2025-12-30)
 
 
