@@ -1,3 +1,20 @@
+## [1.3.4](https://github.com/PAzter1101/restic-manager/compare/v1.3.3...v1.3.4) (2025-12-30)
+
+
+### Bug Fixes
+
+* combine PR creation and approval in single step ([dd235a4](https://github.com/PAzter1101/restic-manager/commit/dd235a45b27f538762d361feff9570502a203174))
+
+## 🐳 Docker Images
+
+- **GitHub Container Registry**: `ghcr.io/pazter1101/restic-manager:1.3.4`
+- **Docker Hub**: `pazter1101/restic-manager:1.3.4`
+
+### Usage
+```bash
+docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:1.3.4
+```
+
 ## [1.3.3](https://github.com/PAzter1101/restic-manager/compare/v1.3.2...v1.3.3) (2025-12-30)
 
 
