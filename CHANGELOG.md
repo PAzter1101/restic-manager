@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/PAzter1101/restic-manager/compare/v1.2.1...v1.3.0) (2025-12-30)
+
+
+### Features
+
+* add Docker image links to releases and fix image tagging ([0f1b461](https://github.com/PAzter1101/restic-manager/commit/0f1b4615bfb001ff32916d030232a56163db5af8))
+
 ## [1.2.1](https://github.com/PAzter1101/restic-manager/compare/v1.2.0...v1.2.1) (2025-12-29)
 
 
