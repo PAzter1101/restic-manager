@@ -1,3 +1,20 @@
+## [1.3.3](https://github.com/PAzter1101/restic-manager/compare/v1.3.2...v1.3.3) (2025-12-30)
+
+
+### Bug Fixes
+
+* use PR URL instead of number for auto-merge command ([bafe140](https://github.com/PAzter1101/restic-manager/commit/bafe14034104510b08a6ed982e47c0d20cdb858b))
+
+## 🐳 Docker Images
+
+- **GitHub Container Registry**: `ghcr.io/pazter1101/restic-manager:1.3.3`
+- **Docker Hub**: `pazter1101/restic-manager:1.3.3`
+
+### Usage
+```bash
+docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:1.3.3
+```
+
 ## [1.3.2](https://github.com/PAzter1101/restic-manager/compare/v1.3.1...v1.3.2) (2025-12-30)
 
 
