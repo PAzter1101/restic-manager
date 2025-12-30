@@ -1,4 +1,4 @@
-# Restic Web Manager
+# Restic Manager
 
 [![Tests](https://github.com/pazter1101/restic-manager/workflows/Tests/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
 [![Code Quality](https://github.com/pazter1101/restic-manager/workflows/Code%20Quality/badge.svg)](https://github.com/pazter1101/restic-manager/actions)
@@ -60,12 +60,13 @@
    ```
 
 2. Запустите контейнер:
+   Из GitHub Container Registry
    ```bash
-   # Из GitHub Container Registry
-   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-web-manager:latest
-   
-   # Или из Docker Hub
-   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-web-manager:latest
+   docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:latest
+   ```
+   Или из Docker Hub
+   ```bash
+   docker run -d -p 8000:8000 --env-file .env pazter1101/restic-manager:latest
    ```
 
 3. Откройте http://localhost:8000 в браузере
