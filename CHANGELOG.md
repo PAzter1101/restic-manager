@@ -1,3 +1,21 @@
+## [1.3.1](https://github.com/PAzter1101/restic-manager/compare/v1.3.0...v1.3.1) (2025-12-30)
+
+
+### Bug Fixes
+
+* correct GitHub Actions syntax for Docker tags ([d3262cd](https://github.com/PAzter1101/restic-manager/commit/d3262cd56465a875b2680f955b0e859ba7c30548))
+* improve Docker image tagging with semantic-release outputs ([2f2ed29](https://github.com/PAzter1101/restic-manager/commit/2f2ed29eb1353f023487c282634e24db02e8efe1))
+
+## 🐳 Docker Images
+
+- **GitHub Container Registry**: `ghcr.io/pazter1101/restic-manager:1.3.1`
+- **Docker Hub**: `pazter1101/restic-manager:1.3.1`
+
+### Usage
+```bash
+docker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:1.3.1
+```
+
 # [1.3.0](https://github.com/PAzter1101/restic-manager/compare/v1.2.1...v1.3.0) (2025-12-30)
 
 
