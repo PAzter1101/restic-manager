@@ -182,7 +182,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         ref: main
 
-    - name: Create and approve sync PR
+    - name: Create sync PR
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
@@ -194,5 +194,11 @@ jobs:
           --body "Auto-sync after release. This PR merges the latest changes from main branch to develop." \
           --base develop \
           --head $BRANCH_NAME)
+        echo "PR_URL=$PR_URL" >> $GITHUB_ENV
+
+    - name: Approve and enable auto-merge
+      env:
+        GH_TOKEN: ${{ secrets.PAT_TOKEN }}
+      run: |
         gh pr review --approve "$PR_URL"
         gh pr merge --auto --merge "$PR_URL"
