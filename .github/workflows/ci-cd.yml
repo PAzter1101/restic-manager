@@ -87,6 +87,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [tests-complete]
     if: github.ref == 'refs/heads/main' && !contains(github.event.head_commit.message, 'Merge branch')
+    outputs:
+      version: ${{ steps.release.outputs.version }}
+      released: ${{ steps.release.outputs.released }}
     permissions:
       contents: write
       issues: write
@@ -108,14 +111,23 @@ jobs:
         npm install -g semantic-release @semantic-release/changelog @semantic-release/git
 
     - name: Release
+      id: release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: npx semantic-release
+      run: |
+        npx semantic-release --debug 2>&1 | tee release.log
+        if grep -q "Published release" release.log; then
+          VERSION=$(grep "Published release" release.log | sed -n 's/.*Published release \([^ ]*\).*/\1/p')
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "released=true" >> $GITHUB_OUTPUT
+        else
+          echo "released=false" >> $GITHUB_OUTPUT
+        fi
 
   docker-build:
     runs-on: ubuntu-latest
     needs: [semantic-release]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && needs.semantic-release.outputs.released == 'true'
     permissions:
       contents: read
       packages: write
@@ -140,15 +152,6 @@ jobs:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-    - name: Get release version
-      id: version
-      run: |
-        VERSION=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
-          "https://api.github.com/repos/${{ github.repository }}/releases/latest" | \
-          jq -r '.tag_name')
-        echo "tag=$VERSION" >> $GITHUB_OUTPUT
-        echo "version=${VERSION#v}" >> $GITHUB_OUTPUT
-
     - name: Extract metadata
       id: meta
       uses: docker/metadata-action@v5
@@ -158,8 +161,8 @@ jobs:
           ${{ secrets.DOCKERHUB_USERNAME }}/restic-manager
         tags: |
           type=raw,value=latest
-          type=raw,value=${{ steps.version.outputs.tag }}
-          type=raw,value=${{ steps.version.outputs.version }}
+          type=raw,value=${{ needs.semantic-release.outputs.version }}
+          type=raw,value=${{ needs.semantic-release.outputs.version | replace('v', '') }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v5

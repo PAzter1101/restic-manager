@@ -2,18 +2,16 @@
   "branches": ["main"],
   "plugins": [
     "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
     [
-      "@semantic-release/github",
+      "@semantic-release/release-notes-generator",
       {
-        "successComment": false,
-        "releasedLabels": false,
-        "addReleases": "bottom",
-        "assets": [],
-        "releaseBodyTemplate": "{{#each notes}}{{#each notes}}{{.}}{{/each}}{{/each}}\n\n## 🐳 Docker Images\n\n- **GitHub Container Registry**: `ghcr.io/pazter1101/restic-manager:{{version}}`\n- **Docker Hub**: `pazter1101/restic-manager:{{version}}`\n\n### Usage\n```bash\ndocker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:{{version}}\n```"
+        "writerOpts": {
+          "footerPartial": "## 🐳 Docker Images\n\n- **GitHub Container Registry**: `ghcr.io/pazter1101/restic-manager:{{version}}`\n- **Docker Hub**: `pazter1101/restic-manager:{{version}}`\n\n### Usage\n```bash\ndocker run -d -p 8000:8000 --env-file .env ghcr.io/pazter1101/restic-manager:{{version}}\n```\n\n"
+        }
       }
     ],
+    "@semantic-release/changelog",
+    "@semantic-release/github",
     [
       "@semantic-release/git",
       {
