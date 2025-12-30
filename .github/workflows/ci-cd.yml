@@ -162,7 +162,6 @@ jobs:
         tags: |
           type=raw,value=latest
           type=raw,value=${{ needs.semantic-release.outputs.version }}
-          type=raw,value=${{ needs.semantic-release.outputs.version | replace('v', '') }}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v5
