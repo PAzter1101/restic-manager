@@ -5,7 +5,7 @@
 # -----------------------------------------------------------------------------
 # Stage 1: Frontend Builder (Node.js)
 # -----------------------------------------------------------------------------
-FROM node:22-alpine AS frontend-builder
+FROM node:25-alpine AS frontend-builder
 
 # Set working directory
 WORKDIR /app/frontend
