@@ -21,7 +21,7 @@ RUN npm run build
 # -----------------------------------------------------------------------------
 # Stage 2: Python Dependencies Builder
 # -----------------------------------------------------------------------------
-FROM python:3.12-slim-bookworm AS python-builder
+FROM python:3.14-slim-bookworm AS python-builder
 
 # Install build dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -40,7 +40,7 @@ RUN pip install --no-cache-dir --upgrade pip \
 # -----------------------------------------------------------------------------
 # Stage 3: Runtime Image
 # -----------------------------------------------------------------------------
-FROM python:3.12-slim-bookworm AS runtime
+FROM python:3.14-slim-bookworm AS runtime
 
 # Create non-root user
 RUN groupadd -r appuser && useradd -r -g appuser appuser
