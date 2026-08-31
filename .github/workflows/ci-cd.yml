@@ -38,7 +38,7 @@ jobs:
 
     - name: Upload coverage to Codecov
       if: matrix.python-version == '3.11'
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       with:
         file: ./app/coverage.xml
         flags: backend
@@ -69,7 +69,7 @@ jobs:
         npm test -- --run --coverage
 
     - name: Upload frontend coverage to Codecov
-      uses: codecov/codecov-action@v5
+      uses: codecov/codecov-action@v6
       with:
         file: ./frontend/coverage/lcov.info
         flags: frontend
